@@ -68,6 +68,7 @@
   .btnish.go { background:var(--accent); border-color:var(--accent); color:var(--on-accent) }
   .tag { display:inline-block; padding:0 8px; border-radius:999px; font-size:12.5px; font-weight:700; line-height:1.7 }
   .tag.ok { background:var(--ok-soft); color:var(--ok) }
+  .tag.bad { background:#fdecea; color:#b42318 }
   .tag.warn { background:var(--warn-soft); color:var(--warn) }
   .note { border:1px solid var(--accent-line); background:var(--accent-soft); border-radius:8px; padding:10px 14px; margin:12px 0; max-width:70ch }
   .note p:last-child { margin:0 }
@@ -96,7 +97,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.29 · 2026-10-27</span>
+  <span class="ver">0.2.30 · 2026-10-27</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -120,10 +121,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.29.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.30.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.29</span> 줄에 보입니다. 새 판이 나오면 이 줄이 노란 <span class="btnish">새 버전 X 내려받기</span>로 바뀝니다(켠 뒤 8초, 그 뒤 6시간마다 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.30</span> 줄에 보입니다. 새 판이 나오면 이 줄이 노란 <span class="btnish">새 버전 X 내려받기</span>로 바뀝니다(켠 뒤 8초, 그 뒤 6시간마다 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -148,23 +149,107 @@
 <p>그 아래 진행 띠는 지금 돌고 있는 작업과 남은 시간을 보여 주고, <span class="btnish">중지</span>로 멈춥니다.</p>
 
 <h2 id="prepare">3. 준비(한 번만)</h2>
-<p>0단계 표의 상태가 전부 <span class="tag ok">✓</span>가 되면 끝입니다. PC마다 한 번만 하면 되고, 설정은 이 PC에만 저장됩니다.</p>
+<p>프로그램 왼쪽 <strong>0 준비</strong>를 누르면 준비 표가 나옵니다. 아래 순서대로 하나씩 채우면 표의 상태가 <span class="tag ok">✓</span>로 바뀝니다. PC마다 한 번만 하면 되고, 키와 비밀번호는 이 PC 안에만 저장됩니다.</p>
+
+<h3>한눈에 보기</h3>
 <div class="scroll"><table>
-  <thead><tr><th>항목</th><th>하는 일</th><th>어디에 쓰나</th></tr></thead>
+  <thead><tr><th>항목</th><th>꼭?</th><th>왜 필요한가</th><th>어디서</th></tr></thead>
   <tbody>
-    <tr><td>문서 AI</td><td><span class="btnish">AI 설정 펼치기</span> → 읽기 AI는 <strong>「Gemini — API 키 입력」</strong>(Google AI Studio 키)을 권장. 문서 읽기 정확도가 가장 좋고 빠릅니다. Claude·Codex 는 로그인만 하면 되지만 스캔본 읽기가 약합니다. 판단 AI는 따로 고릅니다. <strong>검증 AI</strong>(선택)는 읽기 AI 와 다른 AI·모델로 고르면 물건지 「문서 검증」을 쓸 수 있습니다</td><td>등기부·감정평가서 읽기, 용도·사례 판단</td></tr>
-    <tr><td>지지옥션 로그인</td><td><span class="btnish">지지옥션 탭 열기</span> → 본인 계정으로 로그인. 로그인은 다음에 켜도 유지</td><td>본건 사건 조회, 낙찰사례</td></tr>
-    <tr><td>인포케어 로그인</td><td><span class="btnish">인포케어 탭 열기</span> → 로그인</td><td>낙찰통계</td></tr>
-    <tr><td>국토교통부 API</td><td>공공데이터포털 인증키 입력 → <span class="btnish go">저장</span></td><td>실거래 거래사례</td></tr>
-    <tr><td>V-World 키</td><td>브이월드 인증키 입력 → 저장</td><td>디스코 반경 필지 목록, 위치도(카카오 키 없을 때)</td></tr>
-    <tr><td>카카오 REST 키</td><td>선택. 있으면 위치도를 카카오 지도로 만듭니다</td><td>위치도</td></tr>
-    <tr><td>디스코 로그인</td><td>이메일·비밀번호 저장 → <span class="btnish">로그인 확인</span></td><td>거래사례(국토부와 함께)</td></tr>
-    <tr><td>평가보고서 템플릿</td><td><span class="btnish go">템플릿 고르기</span> → 이번 분기 <code>New Temp_v36 … .xlsm</code> 선택</td><td>모든 기입</td></tr>
-    <tr><td>CLI 연결</td><td>선택. Claude Code·Codex 를 쓰는 사람만 <span class="btnish">스킬 설치</span>. 안 쓰면 그대로 둡니다</td><td>9. CLI 연결</td></tr>
+    <tr><td>① 평가보고서 템플릿</td><td>필수</td><td>도구가 값을 써 넣을 보고서 원본(.xlsm)</td><td>이번 분기 공유 폴더</td></tr>
+    <tr><td>② 문서 AI(읽기)</td><td>필수</td><td>등기부·감정평가서·신탁계약서·수익권증서를 읽어 주소·금액·권리를 뽑습니다</td><td>Google AI Studio(무료 키)</td></tr>
+    <tr><td>③ 판단 AI</td><td>권장</td><td>주소 대조, 권리분석, 낙찰·거래사례 추천, 용도 판단</td><td>Codex 또는 Claude 로그인(없으면 읽기 AI 가 대신)</td></tr>
+    <tr><td>④ 지지옥션 로그인</td><td>필수</td><td>본건 경매 사건 조회, 주변 낙찰사례 수집</td><td>회사 지지옥션 계정</td></tr>
+    <tr><td>⑤ 인포케어 로그인</td><td>권장</td><td>프로그램에 든 분기 통계에 없는 지역·용도의 낙찰통계 조회</td><td>회사 인포케어 계정</td></tr>
+    <tr><td>⑥ 국토교통부 API</td><td>필수</td><td>주변 실거래(거래사례)</td><td>공공데이터포털 data.go.kr</td></tr>
+    <tr><td>⑦ 디스코 로그인</td><td>권장</td><td>국토부에 없는 상가·사무실 실거래를 디스코에서 함께 받습니다</td><td>disco.re 개인 계정</td></tr>
+    <tr><td>⑧ V-World 키</td><td>권장</td><td>디스코가 반경 안 필지 목록을 받는 데 씀 · 카카오 키가 없을 때 위치도 지도</td><td>브이월드 vworld.kr</td></tr>
+    <tr><td>⑨ 카카오 REST 키</td><td>선택</td><td>위치도를 카카오 지도로(더 깔끔)</td><td>카카오 개발자 developers.kakao.com</td></tr>
+    <tr><td>⑩ 검증 AI · CLI 연결</td><td>선택</td><td>문서 파싱 교차 확인 · Claude Code/Codex 에서 말로 부리기</td><td>프로그램 안에서 고르기</td></tr>
   </tbody>
 </table></div>
+<div class="note"><p>낙찰통계는 분기 인포케어 일괄 통계가 프로그램에 들어 있어 대부분 바로 나옵니다. 인포케어 로그인은 그 통계에 없는 지역·용도를 새로 조회할 때만 씁니다.</p></div>
 
-<div class="note"><p>문서 읽기는 구글 API(Gemini API 키)가 가장 정확합니다. 스캔 PDF(등기부·감정평가서·신탁계약서·수익권증서)에서 특히 차이가 납니다. 키는 <a href="https://aistudio.google.com/">aistudio.google.com</a>에서 무료로 만듭니다.</p></div>
+<h3>① 평가보고서 템플릿</h3>
+<ol>
+  <li>준비 표 「평가보고서 템플릿」 행의 <span class="btnish">템플릿 고르기</span>.</li>
+  <li>이번 분기 공유 폴더의 <code>New Temp_v… .xlsm</code> 를 고릅니다. 원본은 건드리지 않고 차주마다 복사본에 씁니다.</li>
+</ol>
+
+<h3>② 문서 AI — Gemini API 키(무료)</h3>
+<p>문서 읽기는 구글 Gemini 가 가장 정확하고 빠릅니다. 스캔 PDF 에서 특히 차이가 납니다.</p>
+<ol>
+  <li><a href="https://aistudio.google.com/">aistudio.google.com</a> 에 구글 계정으로 로그인합니다.</li>
+  <li>왼쪽 메뉴의 <strong>Get API key</strong> → <strong>Create API key</strong> 를 눌러 키를 만들고 복사합니다.</li>
+  <li>프로그램 준비 표 「문서 AI」 행의 <span class="btnish">AI 설정 펼치기</span>.</li>
+  <li>AI 에서 <strong>「Gemini — API 키 입력」</strong>을 고르고, 모델은 목록 맨 위 그대로 두고, 키 칸에 붙여 넣고 <span class="btnish go">저장</span>.</li>
+  <li>상태가 <span class="tag ok">✓ 설정됨</span>이면 끝. 무료 키는 하루 사용량 한도가 있어, 많이 돌리면 다음 날 풀립니다.</li>
+</ol>
+
+<h3>③ 판단 AI — Codex 또는 Claude(권장)</h3>
+<ol>
+  <li>같은 펼친 칸의 <strong>판단 AI</strong> 에서 Codex 또는 Claude 를 고르고 <span class="btnish">저장</span>.</li>
+  <li>「로그인 필요」가 뜨면 <span class="btnish go">로그인 창 열기</span> → 열린 창에서 본인 계정으로 로그인 → 준비 표 <span class="btnish">상태 확인</span>.</li>
+  <li>프로그램이 이 PC 에 없으면 준비 표 아래 자동 설치가 먼저 돕니다. 고르지 않으면 읽기 AI(Gemini)가 판단도 합니다.</li>
+</ol>
+
+<h3>④ 지지옥션 · ⑤ 인포케어 로그인</h3>
+<ol>
+  <li>준비 표의 <span class="btnish">지지옥션 탭 열기</span> → 맨 위 「지지옥션」 탭에서 회사 계정으로 로그인합니다.</li>
+  <li>인포케어도 <span class="btnish">인포케어 탭 열기</span> → 로그인.</li>
+  <li>「차주 작업」 탭으로 돌아오면 로그인 칸이 저절로 <span class="tag ok">✓ 로그인됨</span>으로 바뀝니다. 로그인은 프로그램을 껐다 켜도 유지됩니다.</li>
+</ol>
+<div class="note"><p>두 사이트는 사람이 쓰는 속도로만 요청합니다. 너무 많이 누르면 사이트가 막을 수 있으니, 「모으기」는 한 번 누르고 진행 띠를 기다립니다.</p></div>
+
+<h3>⑥ 국토교통부 실거래 API — 공공데이터포털</h3>
+<p>주변 실거래(거래사례)를 받습니다. 키 하나로 아래 서비스를 모두 쓰지만, <strong>서비스마다 따로 「활용신청」</strong>을 해야 합니다.</p>
+<ol>
+  <li><a href="https://www.data.go.kr/">data.go.kr</a> 회원가입·로그인.</li>
+  <li>검색창에 아래 이름을 하나씩 넣고 들어가 <strong>활용신청</strong>(목적: 업무 참고 등). 모두 자동 승인됩니다.</li>
+  <li>마이페이지 → 활용신청 목록 → 아무 항목이나 열면 <strong>일반 인증키(Decoding)</strong> 가 있습니다. 8개 모두 같은 키입니다.</li>
+  <li>준비 표 「국토교통부 API」 칸에 붙여 넣고 <span class="btnish go">저장</span>. 신청 직후 몇 분~1시간은 「등록되지 않은 키」가 날 수 있습니다(포털 반영 지연).</li>
+</ol>
+<div class="scroll"><table>
+  <thead><tr><th>신청할 서비스(국토교통부_…)</th><th>검색어(서비스 ID)</th><th>쓰는 물건</th></tr></thead>
+  <tbody>
+    <tr><td>아파트 매매 실거래가 <strong>상세</strong> 자료</td><td><code>RTMSDataSvcAptTradeDev</code></td><td>아파트(상세 쪽이어야 합니다)</td></tr>
+    <tr><td>오피스텔 매매 실거래가 자료</td><td><code>RTMSDataSvcOffiTrade</code></td><td>오피스텔</td></tr>
+    <tr><td>연립다세대 매매 실거래가 자료</td><td><code>RTMSDataSvcRHTrade</code></td><td>연립·다세대</td></tr>
+    <tr><td>단독/다가구 매매 실거래가 자료</td><td><code>RTMSDataSvcSHTrade</code></td><td>단독·다가구</td></tr>
+    <tr><td>토지 매매 실거래가 자료</td><td><code>RTMSDataSvcLandTrade</code></td><td>토지</td></tr>
+    <tr><td>상업업무용 부동산 매매 실거래가 자료</td><td><code>RTMSDataSvcNrgTrade</code></td><td>상가·사무실·근린</td></tr>
+    <tr><td>공장 및 창고 등 부동산 매매 실거래가 자료</td><td><code>RTMSDataSvcInduTrade</code></td><td>공장·창고</td></tr>
+    <tr><td>아파트 분양권전매 실거래가 자료</td><td><code>RTMSDataSvcSilvTrade</code></td><td>분양·입주권</td></tr>
+  </tbody>
+</table></div>
+<p>전월세 서비스는 필요 없습니다. 빠뜨린 유형만 조회가 실패하므로 8개를 모두 신청해 두는 게 편합니다.</p>
+
+<h3>⑦ 디스코 로그인</h3>
+<ol>
+  <li><a href="https://www.disco.re/">disco.re</a> 에 개인 계정을 만듭니다(무료).</li>
+  <li>준비 표 「디스코 로그인」 행에 이메일·비밀번호 → <span class="btnish">저장</span> → <span class="btnish">로그인 확인</span>.</li>
+  <li>국토부 실거래와 디스코 실거래를 함께 받아 거래사례 후보가 늘어납니다.</li>
+</ol>
+
+<h3>⑧ V-World 키 — 브이월드</h3>
+<ol>
+  <li><a href="https://www.vworld.kr/">vworld.kr</a> 회원가입·로그인 → 상단 <strong>오픈API</strong> → <strong>인증키 발급</strong>.</li>
+  <li>활용할 API 고르는 칸에서 <strong>2D 데이터(연속지적도)</strong>, <strong>이미지(정적 지도)</strong>, <strong>검색·주소 좌표(Geocoder)</strong> 를 체크합니다. 서비스 URL 칸은 <code>http://localhost</code> 로 적어도 됩니다.</li>
+  <li>발급된 키를 준비 표 「V-World 키」 칸에 넣고 <span class="btnish go">저장</span>.</li>
+  <li>쓰임: 디스코가 본건 반경 안 필지 목록을 받는 데 씁니다(없으면 거래사례가 적게 나옵니다). 카카오 키가 없을 때 위치도 지도도 여기서 만듭니다.</li>
+</ol>
+
+<h3>⑨ 카카오 REST 키(선택)</h3>
+<ol>
+  <li><a href="https://developers.kakao.com/">developers.kakao.com</a> 로그인 → <strong>내 애플리케이션</strong> → <strong>애플리케이션 추가</strong>(이름 아무거나).</li>
+  <li>앱 설정의 <strong>앱 키</strong>에서 <strong>REST API 키</strong>를 복사합니다. 지도가 안 나오면 앱 설정에서 <strong>카카오맵</strong> 사용을 켭니다.</li>
+  <li>준비 표 「카카오 REST 키」 칸에 넣고 <span class="btnish go">저장</span>. 위치도(템플릿 4.사진)를 카카오 지도로 만듭니다.</li>
+</ol>
+
+<h3>⑩ 검증 AI · CLI 연결(선택)</h3>
+<ul>
+  <li><strong>검증 AI</strong>: 「AI 설정 펼치기」의 검증 AI 에서 읽기 AI 와 다른 AI·모델을 고르면, 추출이 끝날 때마다 뒤에서 다시 읽어 물건 주소·용도·금액이 같은지 맞춰 봅니다(물건지 「문서 검증」).</li>
+  <li><strong>CLI 연결</strong>: Claude Code·Codex·Claude 데스크톱 앱을 쓰는 사람만 <span class="btnish">연결 설치</span>. 자세한 것은 9장.</li>
+</ul>
 
 <h2 id="quarter">4. 분기 시작</h2>
 <div class="flow">
@@ -184,20 +269,36 @@
 <div class="flow">
   <span>문서 추출</span><span class="arrow">→</span><span>공시지가·KB시세</span><span class="arrow">→</span><span>지지옥션 본건 조회</span><span class="arrow">→</span><span>용도 제안</span><span class="arrow">→</span><span>낙찰사례 수집</span><span class="arrow">→</span><span>거래사례 조회</span><span class="arrow">→</span><span>제안 계산</span>
 </div>
-<p>용도를 못 정하면 중간에 묻습니다. 고르면 이어서 돕니다. 파일에는 아직 아무것도 쓰지 않습니다.</p>
+<p>용도를 정하지 못하면 낙찰·거래사례만 건너뛰고 끝까지 갑니다(끝나면 「④ 낙찰사례 검색 용도에서 고르세요」가 뜹니다). 검증 AI 와 주소 대조는 문서 추출이 끝나는 순간 뒤에서 같이 돕니다. 파일에는 아직 아무것도 쓰지 않습니다.</p>
 
-<h3>② 단계마다 확인</h3>
-<ul>
-  <li><strong>물건지</strong> — PBC 문서 타일을 누르면 추출 내용이 보입니다. 잘못 읽은 문서는 <span class="btnish">추출</span>로 다시 읽힙니다. 「물건 묶기」 표에는 등기부·신탁계약서(신탁부동산)·수익권증서(신탁재산표시)·감정평가서의 지번이 한 줄씩 놓이고, 등기부와 같은 지번이면 <span class="tag ok">등기부 일치</span>가 붙습니다. 신탁계약서에 부동산 별지가 없어도 수익권증서 행으로 신탁 쪽 주소를 볼 수 있습니다. 「등기부와 안 맞음」은 등기부에 없는 필지라는 뜻이라, 평가 대상이 아니면 그 행을 「빼기」. 물건이 여럿이면 지번마다 물건 번호(1~3)를 정합니다.</li>
-  <li><strong>문서 검증(선택)</strong> — 0단계에서 검증 AI 를 고르면 저절로 돕니다. 자료 준비·추출이 문서를 다 읽는 순간 검증 AI 가 뒤에서 같은 문서(등기부·감정평가서·신탁계약서·수익권증서·경매개시결정문)를 다시 읽고, 그동안 공시지가·낙찰·거래사례는 그대로 진행됩니다. 결과는 물건지 PBC 문서 아래 「문서 검증」. 가장 먼저 <strong>평가대상 물건(동·리 지번 호수)</strong>을 맞춰 보고(노란 줄), 그다음 용도·평가액·소유자·근저당·우선수익자·한도·사건번호 같은 핵심 칸만 봅니다. <strong>다른 칸만</strong> 나오고 칸마다 <span class="btnish">검증 값으로</span> 또는 <span class="btnish">지금 값 유지</span>. 고르기 전에는 추출 결과가 바뀌지 않습니다. 감정평가서 물건·용도를 바꾸면 낙찰·거래사례를 「다시 모으기」. 두 AI 가 같다고 꼭 맞는 것은 아닙니다(흐린 스캔은 둘이 같이 틀릴 수 있음).</li>
-  <li><strong>경매/공매</strong> — 본건 사건번호·법원·진행 상태. 사건이 없으면 비어 있습니다.</li>
-  <li><strong>낙찰통계</strong> — 분기 인포케어 일괄 통계가 프로그램에 들어 있어 폴더에 통계 파일이 없어도 바로 찾습니다(출처에 「프로그램 동봉」). 그 지역·용도가 없을 때만 인포케어에서 새로 조회합니다. 설정박스에서 지역·용도를 바꾸면 바로 다시 계산됩니다. 적용할 칸(기간·행정구역)을 누릅니다.</li>
-  <li><strong>낙찰사례 · 거래사례</strong> — 「검색 용도」를 체크하고 <span class="btnish">다시 모으기</span>로 다시 받을 수 있습니다. 표에서 쓸 사례를 체크합니다. <span class="btnish">AI 추천</span>은 단가·낙찰가율·위치가 비슷한 것을 골라 줍니다.</li>
-  <li><strong>코멘트</strong> — 감정평가서를 요약한 담보물 개요. 고쳐서 쓰면 됩니다.</li>
-</ul>
+<h3>② 단계마다 확인 — 왼쪽 단계를 위에서부터</h3>
+<p>상자마다 제목 띠가 있고, 파란 버튼은 그 상자에서 지금 눌러야 할 다음 버튼입니다. 이미 한 것은 흰색 「다시 …」입니다.</p>
+<ol>
+  <li><strong>1 물건지 — 문서와 물건 주소</strong>
+    <ul>
+      <li><em>볼 것</em>: 「PBC 문서」 타일의 추출 수. 타일을 누르면 문서별 추출 내용이 보입니다.</li>
+      <li><em>볼 것</em>: 「물건 묶기」 표의 <strong>결론</strong>. 등기부 = 감정평가서 = 수익권증서 주소를 AI 가 대조해 같은 물건이면 <span class="tag ok">맞음</span>, 다르면 <span class="tag bad">틀림</span>, 다른 점은 <strong>차이 사유</strong>에.</li>
+      <li><em>할 것</em>: 「틀림」인데 평가 대상이 아니면 그 행 <span class="btnish">빼기</span>. 물건이 여럿이면 지번마다 물건 번호(1~3)를 고르고 <span class="btnish">저장</span>.</li>
+      <li><em>할 것(검증 AI 를 켠 경우)</em>: 「문서 검증」 상자에 다른 칸이 있으면 칸마다 <span class="btnish">검증 값으로</span> 또는 <span class="btnish">지금 값 유지</span>. 노란 줄(물건 지번)을 먼저 봅니다.</li>
+      <li>「공시지가·KB시세」「평가물건지 표」「위치도」 탭은 6장 참고.</li>
+    </ul></li>
+  <li><strong>2 경매/공매</strong> — 본건 사건번호·법원·진행 상태. 사건이 없으면 비어 있습니다. 다시 받으려면 <span class="btnish">본건 사건 조회</span>.</li>
+  <li><strong>3 낙찰통계</strong>
+    <ul>
+      <li><em>볼 것</em>: 표의 출처(「프로그램 동봉」 = 분기 일괄 통계)와 초록으로 칠해진 칸(보고서에 쓸 기간·행정구역).</li>
+      <li><em>할 것</em>: 다른 칸을 쓰려면 그 칸을 누릅니다. 지역·용도를 바꾸면 바로 다시 계산됩니다. 「통계 없음」이면 <span class="btnish">인포케어에서 통계 가져오기</span>.</li>
+    </ul></li>
+  <li><strong>4 낙찰사례 · 5 거래사례</strong>
+    <ul>
+      <li><em>볼 것</em>: 「본건 주소」와 「검색 용도」(고른 용도만 보입니다 — 바꾸려면 <span class="btnish">목록 펼치기</span>).</li>
+      <li><em>할 것</em>: 용도·기간·범위를 바꿨으면 <span class="btnish">다시 모으기</span>. 표에서 쓸 사례를 체크(최대 5건·3건). <span class="btnish">AI 추천</span>은 위치·용도·면적·낙찰가율이 비슷한 것을 골라 줍니다.</li>
+      <li><em>할 것</em>: 맨 아래 「③ 보고서 용도」가 「정해야 함」이면 고르고 <span class="btnish">저장</span>. 토지와 건물이 같은 지번이면 건물 용도로 고릅니다.</li>
+    </ul></li>
+  <li><strong>6 코멘트</strong> — 감정평가서를 요약한 담보물 개요. 보고서에 들어갈 글이니 고쳐서 쓰면 됩니다.</li>
+</ol>
 
 <h3>③ 기입</h3>
-<p>7단계 기입에서 <span class="btnish go">한 번에 적용</span>을 누르면 템플릿을 복사해 보고서 파일을 만들고, 지금까지 고른 값을 도구 칸에 씁니다. 사람이 손본 보고서에 다시 적용해도 도구 칸만 바꿉니다. 저감(추가 저감 사유·비율)은 기입 화면 위쪽에서 넣습니다.</p>
+<p>7단계 기입에서 <span class="btnish go">한 번에 적용</span>을 누르면 템플릿을 복사해 보고서 파일을 만들고, 지금까지 고른 값을 도구 칸에 씁니다. 사람이 손본 보고서에 다시 적용해도 도구 칸만 바꿉니다. 신탁공매저감 5% 는 신탁 물건이면 자동으로 들어가고, 추가저감은 보고서 엑셀에서 직접 적습니다.</p>
 
 <h2 id="paste">6. 템플릿에 붙이기</h2>
 <p>기입으로 안 들어가는 덩어리는 화면의 <span class="btnish">복사</span> 버튼으로 복사해 템플릿에 <kbd>Ctrl</kbd>+<kbd>V</kbd> 합니다. 버튼 이름이 붙여 넣을 칸입니다.</p>
@@ -268,11 +369,11 @@
 <details><summary>위치도 버튼이 비활성</summary><p>0단계에 카카오 REST 키 또는 V-World 키 중 하나가 있어야 합니다.</p></details>
 <details><summary>다른 차주를 시작하고 싶다</summary><p>왼쪽 아래 <span class="btnish">화면 비우기</span>는 화면만 비웁니다(파일 그대로). <span class="btnish">저장 데이터 삭제</span>는 이 차주의 추출·선택·수집 결과와 도구 산출물까지 지웁니다. PBC 원본과 사람이 저장한 파일은 남습니다.</p></details>
 <details><summary>터미널에서 「프로그램이 켜져 있지 않거나 CLI 연결이 꺼져 있습니다」</summary><p>부동산업무도구를 먼저 켭니다. 켜져 있으면 0단계 「CLI 연결」 행이 켜짐인지 확인합니다.</p></details>
-<details><summary>Claude Code 가 「부동산업무도구 스킬이 없다」고 합니다</summary><p>Claude Code 를 WSL 안에서 돌리는 경우입니다. 0.2.29 부터는 <span class="btnish">연결 설치</span>가 WSL 홈에도 넣으니, 프로그램을 최신으로 올린 뒤 다시 한 번 누릅니다. 설치된 곳은 「CLI 연결」 행에 「WSL …」로 표시됩니다.</p></details>
+<details><summary>Claude Code 가 「부동산업무도구 스킬이 없다」고 합니다</summary><p>Claude Code 를 WSL 안에서 돌리는 경우입니다. 0.2.30 부터는 <span class="btnish">연결 설치</span>가 WSL 홈에도 넣으니, 프로그램을 최신으로 올린 뒤 다시 한 번 누릅니다. 설치된 곳은 「CLI 연결」 행에 「WSL …」로 표시됩니다.</p></details>
 <details><summary>Claude 데스크톱 앱 채팅에 부동산업무도구 도구가 안 보입니다</summary><p><span class="btnish">연결 설치</span> 뒤 앱을 완전히 종료(트레이 아이콘에서 Quit)하고 다시 켭니다. 「CLI 연결」 행에 「Claude 앱 ✓」가 있어야 합니다.</p></details>
 <details><summary>프로그램이 멈춘 것 같다</summary><p>진행 띠의 걸린 시간이 계속 늘면 돌고 있는 겁니다. 멈추려면 <span class="btnish">중지</span>. 창을 닫고 다시 켜면 마지막 차주 폴더와 로그인은 그대로입니다.</p></details>
 
-<footer>부동산업무도구 0.2.29 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
+<footer>부동산업무도구 0.2.30 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
 </main>
 </div>
 </div>
