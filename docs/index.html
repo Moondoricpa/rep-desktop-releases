@@ -96,7 +96,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.25 · 2026-10-27</span>
+  <span class="ver">0.2.26 · 2026-10-27</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -120,10 +120,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.25.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.26.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>새 판이 나오면 <strong>0단계 준비</strong> 표 맨 위 「프로그램 업데이트」에서 <span class="btnish">업데이트 확인</span>을 누르면 받습니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.26</span> 줄에 보입니다. 새 판이 나오면 이 줄이 노란 <span class="btnish">새 버전 X 내려받기</span>로 바뀝니다(켠 뒤 8초, 그 뒤 6시간마다 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -235,7 +235,13 @@
 <h2 id="cli">9. CLI 연결(선택)</h2>
 <p>Claude Code·Codex 같은 AI 터미널을 쓰는 사람은 프로그램을 터미널에서 말로 부릴 수 있습니다. 안 쓰는 사람은 이 장을 건너뜁니다. 프로그램은 그대로입니다.</p>
 <ol>
-  <li>0단계 준비 표 「CLI 연결」 행에서 <span class="btnish">스킬 설치</span>. Claude Code(<code>~\.claude\skills</code>)와 Codex(<code>~\.codex\skills</code>)에 「부동산업무도구」 스킬이 들어갑니다. 한 번만.</li>
+  <li>0단계 준비 표 「CLI 연결」 행에서 <span class="btnish">연결 설치</span>. 한 번만. 세 곳에 들어갑니다.
+    <ul>
+      <li>Claude Code·Codex 스킬 — 윈도우 홈(<code>~\.claude\skills</code>, <code>~\.codex\skills</code>)</li>
+      <li>WSL 안에서 Claude Code 를 쓰는 PC 면 WSL 홈(<code>/home/…/.claude/skills</code>)에도 같이</li>
+      <li>Claude 데스크톱 앱(채팅)이 있으면 앱 설정에 「rep-desktop」 연결을 추가. 앱을 완전히 껐다 켜면 채팅에서 바로 부릴 수 있습니다</li>
+    </ul>
+  </li>
   <li>부동산업무도구를 켜 둡니다. 켜져 있어야 명령이 닿습니다.</li>
   <li>터미널에서 평소처럼 말합니다. 예: <code>김주연 자료 준비해줘</code>, <code>10. 김주연 위치도 넓게 만들어</code>, <code>이번 분기 차주 목록 보여줘</code>. AI 가 스킬을 읽고 프로그램에 명령을 보냅니다.</li>
   <li>진행은 프로그램 화면 로그에 그대로 찍힙니다. 화면 버튼을 누른 것과 똑같이 움직이고, 결과 파일도 같은 곳에 갑니다.</li>
@@ -261,9 +267,11 @@
 <details><summary>위치도 버튼이 비활성</summary><p>0단계에 카카오 REST 키 또는 V-World 키 중 하나가 있어야 합니다.</p></details>
 <details><summary>다른 차주를 시작하고 싶다</summary><p>왼쪽 아래 <span class="btnish">화면 비우기</span>는 화면만 비웁니다(파일 그대로). <span class="btnish">저장 데이터 삭제</span>는 이 차주의 추출·선택·수집 결과와 도구 산출물까지 지웁니다. PBC 원본과 사람이 저장한 파일은 남습니다.</p></details>
 <details><summary>터미널에서 「프로그램이 켜져 있지 않거나 CLI 연결이 꺼져 있습니다」</summary><p>부동산업무도구를 먼저 켭니다. 켜져 있으면 0단계 「CLI 연결」 행이 켜짐인지 확인합니다.</p></details>
+<details><summary>Claude Code 가 「부동산업무도구 스킬이 없다」고 합니다</summary><p>Claude Code 를 WSL 안에서 돌리는 경우입니다. 0.2.26 부터는 <span class="btnish">연결 설치</span>가 WSL 홈에도 넣으니, 프로그램을 최신으로 올린 뒤 다시 한 번 누릅니다. 설치된 곳은 「CLI 연결」 행에 「WSL …」로 표시됩니다.</p></details>
+<details><summary>Claude 데스크톱 앱 채팅에 부동산업무도구 도구가 안 보입니다</summary><p><span class="btnish">연결 설치</span> 뒤 앱을 완전히 종료(트레이 아이콘에서 Quit)하고 다시 켭니다. 「CLI 연결」 행에 「Claude 앱 ✓」가 있어야 합니다.</p></details>
 <details><summary>프로그램이 멈춘 것 같다</summary><p>진행 띠의 걸린 시간이 계속 늘면 돌고 있는 겁니다. 멈추려면 <span class="btnish">중지</span>. 창을 닫고 다시 켜면 마지막 차주 폴더와 로그인은 그대로입니다.</p></details>
 
-<footer>부동산업무도구 0.2.25 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
+<footer>부동산업무도구 0.2.26 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
 </main>
 </div>
 </div>
