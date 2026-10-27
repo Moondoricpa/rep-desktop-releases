@@ -152,7 +152,7 @@
 <div class="scroll"><table>
   <thead><tr><th>항목</th><th>하는 일</th><th>어디에 쓰나</th></tr></thead>
   <tbody>
-    <tr><td>문서 AI</td><td><span class="btnish">AI 설정 펼치기</span> → 읽기 AI(Claude 또는 Codex)와 판단 AI를 고르고 로그인</td><td>등기부·감정평가서 읽기, 용도·사례 판단</td></tr>
+    <tr><td>문서 AI</td><td><span class="btnish">AI 설정 펼치기</span> → 읽기 AI는 <strong>「Gemini — API 키 입력」</strong>(Google AI Studio 키)을 권장. 문서 읽기 정확도가 가장 좋고 빠릅니다. Claude·Codex 는 로그인만 하면 되지만 스캔본 읽기가 약합니다. 판단 AI는 따로 고릅니다</td><td>등기부·감정평가서 읽기, 용도·사례 판단</td></tr>
     <tr><td>지지옥션 로그인</td><td><span class="btnish">지지옥션 탭 열기</span> → 본인 계정으로 로그인. 로그인은 다음에 켜도 유지</td><td>본건 사건 조회, 낙찰사례</td></tr>
     <tr><td>인포케어 로그인</td><td><span class="btnish">인포케어 탭 열기</span> → 로그인</td><td>낙찰통계</td></tr>
     <tr><td>국토교통부 API</td><td>공공데이터포털 인증키 입력 → <span class="btnish go">저장</span></td><td>실거래 거래사례</td></tr>
@@ -163,6 +163,8 @@
     <tr><td>CLI 연결</td><td>선택. Claude Code·Codex 를 쓰는 사람만 <span class="btnish">스킬 설치</span>. 안 쓰면 그대로 둡니다</td><td>9. CLI 연결</td></tr>
   </tbody>
 </table></div>
+
+<div class="note"><p>문서 읽기는 구글 API(Gemini API 키)가 가장 정확합니다. 스캔 PDF(등기부·감정평가서·신탁계약서·수익권증서)에서 특히 차이가 납니다. 키는 <a href="https://aistudio.google.com/">aistudio.google.com</a>에서 무료로 만듭니다.</p></div>
 
 <h2 id="quarter">4. 분기 시작</h2>
 <div class="flow">
@@ -254,7 +256,7 @@
 <h2 id="trouble">10. 막혔을 때</h2>
 <details><summary>지지옥션 본건 조회·낙찰사례가 「로그인 필요」로 실패</summary><p>지지옥션 탭을 열어 로그인 상태를 보고, 풀렸으면 다시 로그인한 뒤 해당 단계의 <span class="btnish">다시 모으기</span>.</p></details>
 <details><summary>낙찰통계가 안 받아짐</summary><p>인포케어 탭 로그인을 먼저. 로그인돼 있으면 설정박스의 지역·용도를 확인합니다. 조건에 맞는 통계가 없으면 그렇게 표시됩니다.</p></details>
-<details><summary>문서 추출이 비어 있거나 틀림</summary><p>그 문서 행을 누르고 <span class="btnish">추출</span>로 다시 읽힙니다. 스캔 PDF는 시간이 더 걸립니다. 계속 안 되면 0단계에서 읽기 AI를 다른 것(Claude ↔ Codex)으로 바꿔 봅니다.</p></details>
+<details><summary>문서 추출이 비어 있거나 틀림</summary><p>그 문서 행을 누르고 <span class="btnish">추출</span>로 다시 읽힙니다. 스캔 PDF는 시간이 더 걸립니다. 계속 안 되면 0단계에서 읽기 AI를 「Gemini — API 키 입력」으로 바꿔 봅니다. 신탁계약서·수익권증서·감정평가서 스캔본은 구글 API가 가장 정확하게 읽습니다.</p></details>
 <details><summary>거래사례 0건</summary><p>0단계에 국토교통부 키와 디스코 계정, V-World 키가 있는지 확인. 반경은 1km에서 시작해 부족하면 3km까지 자동으로 넓힙니다. 그래도 0건이면 「검색 용도」를 넓게 다시 체크합니다.</p></details>
 <details><summary>위치도 버튼이 비활성</summary><p>0단계에 카카오 REST 키 또는 V-World 키 중 하나가 있어야 합니다.</p></details>
 <details><summary>다른 차주를 시작하고 싶다</summary><p>왼쪽 아래 <span class="btnish">화면 비우기</span>는 화면만 비웁니다(파일 그대로). <span class="btnish">저장 데이터 삭제</span>는 이 차주의 추출·선택·수집 결과와 도구 산출물까지 지웁니다. PBC 원본과 사람이 저장한 파일은 남습니다.</p></details>
