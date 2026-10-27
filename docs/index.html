@@ -1,0 +1,283 @@
+<title>부동산업무도구 설명서</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@600;700&family=Gothic+A1:wght@400;500;700&display=swap">
+<style>
+  /* 레이아웃: 프로그램 화면과 같은 구조 — 왼쪽에 단계 레일, 오른쪽에 내용. 토큰은 case.html 의 것을 그대로 잇는다 */
+  :root {
+    --bg:#f4f5f7; --card:#ffffff; --panel:#f6f8fa; --line:#d5dae1; --line-soft:#e6e9ee; --line-strong:#b9c1cc;
+    --ink:#1f2328; --sub:#5b6370; --accent:#1f6feb; --accent-soft:#eaf2ff; --accent-line:#b7cdf5;
+    --ok:#1a7f37; --ok-soft:#e6f4ea; --warn:#9a6700; --warn-soft:#fff6d6; --on-accent:#ffffff;
+    --display:'Hahmlet', 'Noto Serif KR', serif; --body:'Gothic A1', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg:#15181d; --card:#1d2127; --panel:#222731; --line:#343b47; --line-soft:#2b313b; --line-strong:#4a5364;
+    --ink:#e6e9ef; --sub:#9aa4b3; --accent:#6ea3ff; --accent-soft:#1c2a44; --accent-line:#2f4a7a;
+    --ok:#5fc27a; --ok-soft:#17301f; --warn:#e2b53c; --warn-soft:#352b10; --on-accent:#0b1220; color-scheme:dark } }
+  :root[data-theme="dark"] {
+    --bg:#15181d; --card:#1d2127; --panel:#222731; --line:#343b47; --line-soft:#2b313b; --line-strong:#4a5364;
+    --ink:#e6e9ef; --sub:#9aa4b3; --accent:#6ea3ff; --accent-soft:#1c2a44; --accent-line:#2f4a7a;
+    --ok:#5fc27a; --ok-soft:#17301f; --warn:#e2b53c; --warn-soft:#352b10; --on-accent:#0b1220; color-scheme:dark }
+
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.7 var(--body); -webkit-font-smoothing:antialiased;
+         padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:0 48px }
+  ::selection { background:var(--accent-soft); color:var(--ink) }
+  a { color:var(--accent); text-underline-offset:3px }
+  a:focus-visible, summary:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px }
+  h1, h2, h3 { font-family:var(--display); text-wrap:balance; margin:0; letter-spacing:-0.01em }
+  h1 { font-size:2rem; line-height:1.25 }
+  h2 { font-size:1.35rem; line-height:1.3; padding-top:40px; margin-bottom:12px }
+  h3 { font-size:1.05rem; margin:22px 0 6px; font-family:var(--body); font-weight:700 }
+  p { margin:0 0 10px; max-width:70ch }
+  ul, ol { margin:0 0 12px; padding-left:22px; max-width:70ch }
+  li { margin:3px 0 }
+  li::marker { color:var(--sub) }
+  code, kbd { font:0.92em/1.5 var(--body); font-weight:500; background:var(--panel); border:1px solid var(--line-soft); border-radius:4px; padding:1px 6px }
+  kbd { border-bottom-width:2px }
+
+  .wrap { max-width:1080px; margin:0 auto }
+  header { padding:40px 0 20px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:8px 24px; align-items:baseline }
+  header .ver { color:var(--sub); font-size:13px }
+  header p { margin:8px 0 0; flex-basis:100%; color:var(--sub) }
+
+  .grid { display:grid; grid-template-columns:220px minmax(0,1fr); gap:0 40px; align-items:start }
+  nav { position:sticky; top:12px; padding-top:40px }
+  nav ol { list-style:none; padding:0; margin:0; border-left:1px solid var(--line) }
+  nav li { margin:0 }
+  nav a { display:block; padding:6px 14px; color:var(--sub); text-decoration:none; font-size:14px; margin-left:-1px; border-left:2px solid transparent }
+  nav a:hover { color:var(--ink); background:var(--panel) }
+  nav a.on { color:var(--accent); border-left-color:var(--accent); font-weight:700 }
+  nav .n { display:inline-block; width:22px; color:var(--sub); font-variant-numeric:tabular-nums }
+  main { min-width:0; padding-bottom:40px }
+
+  /* 화면 설명 — 프로그램의 단계 레일을 그대로 보여 주는 표 */
+  .rail { display:grid; grid-template-columns:36px 1fr; gap:0 12px; border:1px solid var(--line); border-radius:8px; background:var(--card); overflow:hidden; margin:12px 0 16px; max-width:70ch }
+  .rail > div { padding:9px 12px; border-top:1px solid var(--line-soft) }
+  .rail > div:nth-child(-n+2) { border-top:0 }
+  .rail .k { font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; text-align:right; background:var(--panel) }
+  .rail b { font-weight:700 }
+  .rail .s { color:var(--sub); font-size:13px }
+
+  table { border-collapse:collapse; width:100%; max-width:70ch; font-size:14px; background:var(--card); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:10px 0 14px }
+  th, td { text-align:left; padding:8px 11px; border-top:1px solid var(--line-soft); vertical-align:top }
+  thead th { border-top:0; background:var(--panel); font-size:12.5px; color:var(--sub); font-weight:700; letter-spacing:0.02em }
+  td.cell { font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap }
+  .scroll { overflow-x:auto; max-width:70ch }
+
+  .btnish { display:inline-block; padding:1px 9px; border:1px solid var(--line-strong); border-radius:6px; background:var(--card); font-weight:700; font-size:0.92em; line-height:1.5; white-space:nowrap }
+  .btnish.go { background:var(--accent); border-color:var(--accent); color:var(--on-accent) }
+  .tag { display:inline-block; padding:0 8px; border-radius:999px; font-size:12.5px; font-weight:700; line-height:1.7 }
+  .tag.ok { background:var(--ok-soft); color:var(--ok) }
+  .tag.warn { background:var(--warn-soft); color:var(--warn) }
+  .note { border:1px solid var(--accent-line); background:var(--accent-soft); border-radius:8px; padding:10px 14px; margin:12px 0; max-width:70ch }
+  .note p:last-child { margin:0 }
+  details { border:1px solid var(--line); border-radius:8px; background:var(--card); padding:0 14px; margin:8px 0; max-width:70ch }
+  summary { cursor:pointer; padding:9px 0; font-weight:700; list-style:none; display:flex; gap:8px; align-items:center }
+  summary::before { content:""; width:7px; height:7px; border-right:2px solid var(--sub); border-bottom:2px solid var(--sub); transform:rotate(-45deg); transition:transform .18s cubic-bezier(.2,.7,.2,1); flex:none }
+  details[open] summary::before { transform:rotate(45deg) }
+  details > :not(summary) { margin-top:4px }
+  details[open] { padding-bottom:10px }
+  .flow { display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; margin:8px 0 14px; max-width:70ch }
+  .flow .arrow { color:var(--sub) }
+  footer { border-top:1px solid var(--line); margin-top:40px; padding-top:14px; color:var(--sub); font-size:13px }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns:1fr }
+    nav { position:static; padding-top:16px }
+    nav ol { display:flex; flex-wrap:wrap; gap:4px; border:0 }
+    nav a { border:1px solid var(--line); border-radius:999px; padding:3px 10px; margin:0 }
+    nav a.on { background:var(--accent-soft); border-color:var(--accent-line) }
+    nav .n { display:none }
+    h1 { font-size:1.6rem }
+  }
+  @media (prefers-reduced-motion: reduce) { summary::before { transition:none } }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>부동산업무도구 설명서</h1>
+  <span class="ver">0.2.22 · 2026-10-27</span>
+  <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
+</header>
+
+<div class="grid">
+<nav aria-label="차례">
+  <ol>
+    <li><a href="#install"><span class="n">1</span>설치</a></li>
+    <li><a href="#screen"><span class="n">2</span>화면</a></li>
+    <li><a href="#prepare"><span class="n">3</span>준비(한 번만)</a></li>
+    <li><a href="#quarter"><span class="n">4</span>분기 시작</a></li>
+    <li><a href="#borrower"><span class="n">5</span>차주 한 명 작업</a></li>
+    <li><a href="#paste"><span class="n">6</span>템플릿에 붙이기</a></li>
+    <li><a href="#quick"><span class="n">7</span>빠른 조회</a></li>
+    <li><a href="#files"><span class="n">8</span>파일이 가는 곳</a></li>
+    <li><a href="#cli"><span class="n">9</span>CLI 연결(선택)</a></li>
+    <li><a href="#trouble"><span class="n">10</span>막혔을 때</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<h2 id="install">1. 설치</h2>
+<ol>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.22.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
+  <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
+  <li>새 판이 나오면 <strong>0단계 준비</strong> 표 맨 위 「프로그램 업데이트」에서 <span class="btnish">업데이트 확인</span>을 누르면 받습니다.</li>
+</ol>
+<div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
+
+<h2 id="screen">2. 화면</h2>
+<p>왼쪽은 단계, 오른쪽은 그 단계의 내용입니다. 단계를 누르면 내용이 바뀝니다. 위쪽 탭에서 지지옥션·인포케어 사이트가 프로그램 안에서 열립니다.</p>
+<div class="rail">
+  <div class="k">0</div><div><b>준비</b><div class="s">문서 AI · 사이트 로그인 · API 키 · 템플릿</div></div>
+  <div class="k">1</div><div><b>물건지</b><div class="s">PBC 문서 추출 · 물건 묶기 · 공시지가·KB시세 · 평가물건지 표 · 위치도</div></div>
+  <div class="k">2</div><div><b>경매/공매</b><div class="s">본건 사건 조회(지지옥션)</div></div>
+  <div class="k">3</div><div><b>낙찰통계</b><div class="s">인포케어 지역·기간별 통계 → 적용 칸 선택</div></div>
+  <div class="k">4</div><div><b>낙찰사례</b><div class="s">용도 → 지지옥션 수집 → 유사 사례 고르기</div></div>
+  <div class="k">5</div><div><b>거래사례</b><div class="s">용도 → 국토교통부·디스코 실거래 → 사례 고르기</div></div>
+  <div class="k">6</div><div><b>코멘트</b><div class="s">감정평가서 요약 → 담보물 개요</div></div>
+  <div class="k">7</div><div><b>기입</b><div class="s">단계별 「적용」 또는 「한 번에 적용」 → 보고서 파일</div></div>
+</div>
+<p>왼쪽 맨 위 세 버튼:</p>
+<ul>
+  <li><span class="btnish go">폴더 열기</span> 차주 폴더 하나, 또는 분기 폴더(<code>03. WP</code>)를 엽니다.</li>
+  <li><span class="btnish">빠른 조회</span> 차주 없이 주소 하나로 통계·사례만 봅니다(7장).</li>
+  <li><span class="btnish">분기 차주 목록</span> 차주 작업 중에 목록으로 돌아갑니다.</li>
+</ul>
+<p>그 아래 진행 띠는 지금 돌고 있는 작업과 남은 시간을 보여 주고, <span class="btnish">중지</span>로 멈춥니다.</p>
+
+<h2 id="prepare">3. 준비(한 번만)</h2>
+<p>0단계 표의 상태가 전부 <span class="tag ok">✓</span>가 되면 끝입니다. PC마다 한 번만 하면 되고, 설정은 이 PC에만 저장됩니다.</p>
+<div class="scroll"><table>
+  <thead><tr><th>항목</th><th>하는 일</th><th>어디에 쓰나</th></tr></thead>
+  <tbody>
+    <tr><td>문서 AI</td><td><span class="btnish">AI 설정 펼치기</span> → 읽기 AI(Claude 또는 Codex)와 판단 AI를 고르고 로그인</td><td>등기부·감정평가서 읽기, 용도·사례 판단</td></tr>
+    <tr><td>지지옥션 로그인</td><td><span class="btnish">지지옥션 탭 열기</span> → 본인 계정으로 로그인. 로그인은 다음에 켜도 유지</td><td>본건 사건 조회, 낙찰사례</td></tr>
+    <tr><td>인포케어 로그인</td><td><span class="btnish">인포케어 탭 열기</span> → 로그인</td><td>낙찰통계</td></tr>
+    <tr><td>국토교통부 API</td><td>공공데이터포털 인증키 입력 → <span class="btnish go">저장</span></td><td>실거래 거래사례</td></tr>
+    <tr><td>V-World 키</td><td>브이월드 인증키 입력 → 저장</td><td>디스코 반경 필지 목록, 위치도(카카오 키 없을 때)</td></tr>
+    <tr><td>카카오 REST 키</td><td>선택. 있으면 위치도를 카카오 지도로 만듭니다</td><td>위치도</td></tr>
+    <tr><td>디스코 로그인</td><td>이메일·비밀번호 저장 → <span class="btnish">로그인 확인</span></td><td>거래사례(국토부와 함께)</td></tr>
+    <tr><td>평가보고서 템플릿</td><td><span class="btnish go">템플릿 고르기</span> → 이번 분기 <code>New Temp_v36 … .xlsm</code> 선택</td><td>모든 기입</td></tr>
+    <tr><td>CLI 연결</td><td>선택. Claude Code·Codex 를 쓰는 사람만 <span class="btnish">스킬 설치</span>. 안 쓰면 그대로 둡니다</td><td>9. CLI 연결</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="quarter">4. 분기 시작</h2>
+<div class="flow">
+  <span class="btnish go">폴더 열기</span><span class="arrow">→</span><span>분기 폴더 <code>04. 26.4Q\01. MGAMCO\03. WP</code></span><span class="arrow">→</span><span>평가자(내 이름) 선택</span><span class="arrow">→</span><span class="btnish">공유 폴더에서 내 차주 자료 가져오기</span>
+</div>
+<ol>
+  <li>분기 폴더를 열면 Assign 엑셀을 읽어 <strong>내 차주 목록</strong>이 뜹니다. 추출 전·추출 중·기입 전·기입 완료 개수가 위에 보입니다.</li>
+  <li><span class="btnish">공유 폴더에서 내 차주 자료 가져오기</span>를 누르면 공유 VDR·등기부에서 내 차주 서류를 찾아 <strong>미리보기</strong>를 보여 줍니다. 확인한 뒤 실제로 가져오면 차주마다 <code>03. WP\{평가자}\NN. 차주</code> 폴더가 생깁니다.</li>
+  <li>공유 폴더에 없는 서류는 그 차주 폴더에 직접 넣습니다. 목록에서 「직접 넣음」으로 표시됩니다.</li>
+  <li><span class="btnish">일괄 통계</span>는 목록의 모든 차주 낙찰통계를 인포케어에서 한 번에 받습니다.</li>
+</ol>
+<p>목록에서 차주를 누르면 그 차주 작업 화면으로 갑니다.</p>
+
+<h2 id="borrower">5. 차주 한 명 작업</h2>
+<h3>① 한 번에 모으기</h3>
+<p>1단계 물건지 맨 위 <span class="btnish go">자료 준비(한 번에 모으기)</span>를 누릅니다. 아래를 순서대로 알아서 합니다. 차주 한 명에 보통 5~10분입니다.</p>
+<div class="flow">
+  <span>문서 추출</span><span class="arrow">→</span><span>공시지가·KB시세</span><span class="arrow">→</span><span>지지옥션 본건 조회</span><span class="arrow">→</span><span>용도 제안</span><span class="arrow">→</span><span>낙찰사례 수집</span><span class="arrow">→</span><span>거래사례 조회</span><span class="arrow">→</span><span>제안 계산</span>
+</div>
+<p>용도를 못 정하면 중간에 묻습니다. 고르면 이어서 돕니다. 파일에는 아직 아무것도 쓰지 않습니다.</p>
+
+<h3>② 단계마다 확인</h3>
+<ul>
+  <li><strong>물건지</strong> — PBC 문서 타일을 누르면 추출 내용이 보입니다. 잘못 읽은 문서는 <span class="btnish">추출</span>로 다시 읽힙니다. 물건이 여럿이면 「물건 묶기」에서 지번마다 물건 번호(1~3)를 정합니다. 다른 물건 서류가 섞여 있으면 「빼기」.</li>
+  <li><strong>경매/공매</strong> — 본건 사건번호·법원·진행 상태. 사건이 없으면 비어 있습니다.</li>
+  <li><strong>낙찰통계</strong> — 설정박스에서 지역·용도를 바꾸면 바로 다시 계산됩니다. 적용할 칸(기간·행정구역)을 누릅니다.</li>
+  <li><strong>낙찰사례 · 거래사례</strong> — 「검색 용도」를 체크하고 <span class="btnish">다시 모으기</span>로 다시 받을 수 있습니다. 표에서 쓸 사례를 체크합니다. <span class="btnish">AI 추천</span>은 단가·낙찰가율·위치가 비슷한 것을 골라 줍니다.</li>
+  <li><strong>코멘트</strong> — 감정평가서를 요약한 담보물 개요. 고쳐서 쓰면 됩니다.</li>
+</ul>
+
+<h3>③ 기입</h3>
+<p>7단계 기입에서 <span class="btnish go">한 번에 적용</span>을 누르면 템플릿을 복사해 보고서 파일을 만들고, 지금까지 고른 값을 도구 칸에 씁니다. 사람이 손본 보고서에 다시 적용해도 도구 칸만 바꿉니다. 저감(추가 저감 사유·비율)은 기입 화면 위쪽에서 넣습니다.</p>
+
+<h2 id="paste">6. 템플릿에 붙이기</h2>
+<p>기입으로 안 들어가는 덩어리는 화면의 <span class="btnish">복사</span> 버튼으로 복사해 템플릿에 <kbd>Ctrl</kbd>+<kbd>V</kbd> 합니다. 버튼 이름이 붙여 넣을 칸입니다.</p>
+<div class="scroll"><table>
+  <thead><tr><th>화면</th><th>템플릿 시트</th><th>붙여 넣을 칸</th></tr></thead>
+  <tbody>
+    <tr><td>물건지 › 평가물건지 표</td><td>1.평가물건지</td><td class="cell">F4 · I4 · M4 · U4</td></tr>
+    <tr><td>낙찰통계</td><td>3.평가보고서</td><td class="cell">C275</td></tr>
+    <tr><td>낙찰사례</td><td>3.평가보고서</td><td class="cell">B288 · I288</td></tr>
+    <tr><td>거래사례</td><td>3.평가보고서</td><td class="cell">B298 · K298</td></tr>
+    <tr><td>물건지 › 위치도</td><td>4.사진</td><td class="cell">D5</td></tr>
+  </tbody>
+</table></div>
+<h3>위치도</h3>
+<p>물건지 › <span class="btnish">위치도</span> 탭에서 축척(좁게·보통·넓게·더 넓게)을 고르고 <span class="btnish go">지도 만들어 복사</span>. 지도가 화면에 뜨고 클립보드에 들어갑니다. 템플릿 4.사진 시트 D5 칸을 누르고 <kbd>Ctrl</kbd>+<kbd>V</kbd>. 그림 크기는 칸과 같은 비율(813×534px)이라 늘리거나 줄일 필요가 없습니다. 파일은 <code>02. WP\위치도.png</code>에도 남습니다.</p>
+
+<h2 id="quick">7. 빠른 조회</h2>
+<p>차주 등록 없이 지역 하나로 통계·낙찰사례·거래사례만 볼 때 씁니다.</p>
+<ol>
+  <li>왼쪽 <span class="btnish">빠른 조회</span> → 주소 입력(동까지만 넣어도 됩니다. 예: <code>인천 미추홀구 주안동</code>) → <span class="btnish go">시작</span>.</li>
+  <li>단계가 낙찰통계·낙찰사례·거래사례 3개로 줄어듭니다. 낙찰사례·거래사례는 용도를 고르고 조회합니다.</li>
+  <li>차주 작업으로 돌아가려면 <span class="btnish">분기 차주 목록</span>.</li>
+</ol>
+
+<h2 id="files">8. 파일이 가는 곳</h2>
+<div class="scroll"><table>
+  <thead><tr><th>무엇</th><th>어디</th></tr></thead>
+  <tbody>
+    <tr><td>보고서 파일, 조회 결과 엑셀, 위치도</td><td>차주 폴더 안 <code>02. WP</code></td></tr>
+    <tr><td>차주 작업 상태(추출 결과·선택)</td><td><code>내 문서\부동산업무도구\차주작업</code> — 이 PC에만. 다른 PC에서는 새로 추출·수집</td></tr>
+    <tr><td>빠른 조회 결과</td><td><code>내 문서\부동산업무도구\빠른조회</code></td></tr>
+    <tr><td>설정·키·로그인</td><td><code>%APPDATA%\부동산업무도구</code></td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="cli">9. CLI 연결(선택)</h2>
+<p>Claude Code·Codex 같은 AI 터미널을 쓰는 사람은 프로그램을 터미널에서 말로 부릴 수 있습니다. 안 쓰는 사람은 이 장을 건너뜁니다. 프로그램은 그대로입니다.</p>
+<ol>
+  <li>0단계 준비 표 「CLI 연결」 행에서 <span class="btnish">스킬 설치</span>. Claude Code(<code>~\.claude\skills</code>)와 Codex(<code>~\.codex\skills</code>)에 「부동산업무도구」 스킬이 들어갑니다. 한 번만.</li>
+  <li>부동산업무도구를 켜 둡니다. 켜져 있어야 명령이 닿습니다.</li>
+  <li>터미널에서 평소처럼 말합니다. 예: <code>김주연 자료 준비해줘</code>, <code>10. 김주연 위치도 넓게 만들어</code>, <code>이번 분기 차주 목록 보여줘</code>. AI 가 스킬을 읽고 프로그램에 명령을 보냅니다.</li>
+  <li>진행은 프로그램 화면 로그에 그대로 찍힙니다. 화면 버튼을 누른 것과 똑같이 움직이고, 결과 파일도 같은 곳에 갑니다.</li>
+</ol>
+<div class="scroll"><table>
+  <thead><tr><th>말로 하면</th><th>프로그램이 하는 일</th></tr></thead>
+  <tbody>
+    <tr><td>차주 목록 / 분기</td><td>이번 분기 차주 목록을 읽어 줍니다</td></tr>
+    <tr><td>자료 준비 / 다 모아</td><td>5장 ① 「한 번에 모으기」</td></tr>
+    <tr><td>추출 · 실거래 · 본건 · 통계 · 낙찰사례 · 거래사례</td><td>그 단계 하나만</td></tr>
+    <tr><td>위치도 (좁게·보통·넓게·더 넓게)</td><td>지도를 만들어 클립보드에 넣습니다</td></tr>
+    <tr><td>기입</td><td>템플릿에 값을 씁니다</td></tr>
+    <tr><td>상태 / 로그</td><td>지금 열린 차주와 최근 로그</td></tr>
+  </tbody>
+</table></div>
+<div class="note"><p>연결은 이 PC 안(127.0.0.1)에서만 열리고 매번 새 비밀번호를 씁니다. 끄려면 「CLI 연결」 행의 <span class="btnish">끄기</span>.</p></div>
+
+<h2 id="trouble">10. 막혔을 때</h2>
+<details><summary>지지옥션 본건 조회·낙찰사례가 「로그인 필요」로 실패</summary><p>지지옥션 탭을 열어 로그인 상태를 보고, 풀렸으면 다시 로그인한 뒤 해당 단계의 <span class="btnish">다시 모으기</span>.</p></details>
+<details><summary>낙찰통계가 안 받아짐</summary><p>인포케어 탭 로그인을 먼저. 로그인돼 있으면 설정박스의 지역·용도를 확인합니다. 조건에 맞는 통계가 없으면 그렇게 표시됩니다.</p></details>
+<details><summary>문서 추출이 비어 있거나 틀림</summary><p>그 문서 행을 누르고 <span class="btnish">추출</span>로 다시 읽힙니다. 스캔 PDF는 시간이 더 걸립니다. 계속 안 되면 0단계에서 읽기 AI를 다른 것(Claude ↔ Codex)으로 바꿔 봅니다.</p></details>
+<details><summary>거래사례 0건</summary><p>0단계에 국토교통부 키와 디스코 계정, V-World 키가 있는지 확인. 반경은 1km에서 시작해 부족하면 3km까지 자동으로 넓힙니다. 그래도 0건이면 「검색 용도」를 넓게 다시 체크합니다.</p></details>
+<details><summary>위치도 버튼이 비활성</summary><p>0단계에 카카오 REST 키 또는 V-World 키 중 하나가 있어야 합니다.</p></details>
+<details><summary>다른 차주를 시작하고 싶다</summary><p>왼쪽 아래 <span class="btnish">화면 비우기</span>는 화면만 비웁니다(파일 그대로). <span class="btnish">저장 데이터 삭제</span>는 이 차주의 추출·선택·수집 결과와 도구 산출물까지 지웁니다. PBC 원본과 사람이 저장한 파일은 남습니다.</p></details>
+<details><summary>터미널에서 「프로그램이 켜져 있지 않거나 CLI 연결이 꺼져 있습니다」</summary><p>부동산업무도구를 먼저 켭니다. 켜져 있으면 0단계 「CLI 연결」 행이 켜짐인지 확인합니다.</p></details>
+<details><summary>프로그램이 멈춘 것 같다</summary><p>진행 띠의 걸린 시간이 계속 늘면 돌고 있는 겁니다. 멈추려면 <span class="btnish">중지</span>. 창을 닫고 다시 켜면 마지막 차주 폴더와 로그인은 그대로입니다.</p></details>
+
+<footer>부동산업무도구 0.2.22 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
+</main>
+</div>
+</div>
+
+<script>
+  // 차례 현재 위치 표시 — 스크롤에 따라 가까운 절을 강조
+  (() => {
+    const links = [...document.querySelectorAll('nav a')];
+    const heads = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    if (!('IntersectionObserver' in window) || !heads.length) return;
+    const seen = new Map();
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => seen.set(e.target.id, e.isIntersecting));
+      const first = heads.find(h => seen.get(h.id)) || heads.slice().reverse().find(h => h.getBoundingClientRect().top < 80);
+      links.forEach(a => a.classList.toggle('on', first && a.getAttribute('href') === '#' + first.id));
+    }, { rootMargin: '-10% 0px -70% 0px' });
+    heads.forEach(h => io.observe(h));
+  })();
+</script>
