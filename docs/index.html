@@ -97,7 +97,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.31 · 2026-10-27</span>
+  <span class="ver">0.2.32 · 2026-10-28</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -121,10 +121,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.31.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.32.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.31</span> 줄에 보입니다. 새 판이 나오면 이 줄이 노란 <span class="btnish">새 버전 X 내려받기</span>로 바뀝니다(켠 뒤 8초, 그 뒤 6시간마다 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.32</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -164,7 +164,7 @@
     <tr><td>⑦ 디스코 로그인</td><td>권장</td><td>국토부에 없는 상가·사무실 실거래를 디스코에서 함께 받습니다</td><td>disco.re 개인 계정</td></tr>
     <tr><td>⑧ V-World 키</td><td>권장</td><td>디스코가 반경 안 필지 목록을 받는 데 씀 · 카카오 키가 없을 때 위치도 지도</td><td>브이월드 vworld.kr</td></tr>
     <tr><td>⑨ 카카오 REST 키</td><td>선택</td><td>위치도를 카카오 지도로(더 깔끔)</td><td>카카오 개발자 developers.kakao.com</td></tr>
-    <tr><td>⑩ 검증 AI · CLI 연결</td><td>선택</td><td>문서 파싱 교차 확인 · Claude Code/Codex 에서 말로 부리기</td><td>프로그램 안에서 고르기</td></tr>
+    <tr><td>⑩ 검증 AI · CLI 연결</td><td>자동</td><td>문서 파싱 교차 확인 · Claude Code/Codex 에서 말로 부리기</td><td>프로그램 안에서 고르기</td></tr>
   </tbody>
 </table></div>
 <div class="note"><p>낙찰통계는 분기 인포케어 일괄 통계가 프로그램에 들어 있어 대부분 바로 나옵니다. 인포케어 로그인은 그 통계에 없는 지역·용도를 새로 조회할 때만 씁니다.</p></div>
@@ -247,7 +247,7 @@
 
 <h3>⑩ 검증 AI · CLI 연결(선택)</h3>
 <ul>
-  <li><strong>검증 AI</strong>: 「AI 설정 펼치기」의 검증 AI 에서 읽기 AI 와 다른 AI·모델을 고르면, 추출이 끝날 때마다 뒤에서 다시 읽어 물건 주소·용도·금액이 같은지 맞춰 봅니다(물건지 「문서 검증」).</li>
+  <li><strong>검증 AI</strong>: 기본은 <strong>자동</strong> — 이 PC 에 있는 AI 중 읽기 AI 와 다른 것(Gemini 키 → Codex → Claude 순, 없으면 같은 AI 의 다른 모델)으로, 문서 추출이 끝날 때마다(버튼·자료 준비·CLI 모두) 뒤에서 다시 읽어 물건 주소·용도·금액이 같은지 맞춰 봅니다. 결과는 물건지 › PBC 문서 아래 「문서 검증」 상자. 특정 AI 를 쓰려면 「AI 설정 펼치기」의 검증 AI 에서 고르고, 끄려면 「끔」.</li>
   <li><strong>CLI 연결</strong>: Claude Code·Codex·Claude 데스크톱 앱을 쓰는 사람만 <span class="btnish">연결 설치</span>. 자세한 것은 9장.</li>
 </ul>
 
@@ -279,7 +279,7 @@
       <li><em>볼 것</em>: 「PBC 문서」 타일의 추출 수. 타일을 누르면 문서별 추출 내용이 보입니다.</li>
       <li><em>볼 것</em>: 「물건 묶기」 표의 <strong>결론</strong>. 등기부 = 감정평가서 = 수익권증서 주소를 AI 가 대조해 같은 물건이면 <span class="tag ok">맞음</span>, 다르면 <span class="tag bad">틀림</span>, 다른 점은 <strong>차이 사유</strong>에.</li>
       <li><em>할 것</em>: 「틀림」인데 평가 대상이 아니면 그 행 <span class="btnish">빼기</span>. 물건이 여럿이면 지번마다 물건 번호(1~3)를 고르고 <span class="btnish">저장</span>.</li>
-      <li><em>할 것(검증 AI 를 켠 경우)</em>: 「문서 검증」 상자에 다른 칸이 있으면 칸마다 <span class="btnish">검증 값으로</span> 또는 <span class="btnish">지금 값 유지</span>. 노란 줄(물건 지번)을 먼저 봅니다.</li>
+      <li><em>할 것</em>: 「문서 검증」 상자에 다른 칸이 있으면 칸마다 <span class="btnish">검증 값으로</span> 또는 <span class="btnish">지금 값 유지</span>. 노란 줄(물건 지번)을 먼저 봅니다.</li>
       <li>「공시지가·KB시세」「평가물건지 표」「위치도」 탭은 6장 참고.</li>
     </ul></li>
   <li><strong>2 경매/공매</strong> — 본건 사건번호·법원·진행 상태. 사건이 없으면 비어 있습니다. 다시 받으려면 <span class="btnish">본건 사건 조회</span>.</li>
@@ -291,7 +291,7 @@
   <li><strong>4 낙찰사례 · 5 거래사례</strong>
     <ul>
       <li><em>볼 것</em>: 「본건 주소」와 「검색 용도」(고른 용도만 보입니다 — 바꾸려면 <span class="btnish">목록 펼치기</span>).</li>
-      <li><em>할 것</em>: 용도·기간·범위를 바꿨으면 <span class="btnish">다시 모으기</span>. 표에서 쓸 사례를 체크(최대 5건·3건). <span class="btnish">AI 추천</span>은 위치·용도·면적·낙찰가율이 비슷한 것을 골라 줍니다.</li>
+      <li><em>할 것</em>: 용도·기간·범위를 바꿨으면 <span class="btnish">다시 모으기</span>. 표에서 쓸 사례를 체크(최대 5건·3건). <span class="btnish">AI 추천</span>은 위치·용도·면적·낙찰가율이 비슷한 것을 3건씩 골라 줍니다(이유는 「AI 추천」 표시에 마우스). 표는 엑셀처럼 칸을 끌어 <kbd>Ctrl</kbd>+<kbd>C</kbd> 하거나 <span class="btnish">고른 사례 복사</span>·<span class="btnish">전체 복사</span>로 머리글째 복사해 엑셀에 붙여 넣으면 숫자는 숫자로 들어갑니다. 낙찰사례 엑셀 파일도 같은 15열(사건번호·주소·낙찰일자·감정평가액·낙찰가액·낙찰가율·건물면적·토지면적·입찰인수·비고·면적당 감정가/낙찰가·비고)입니다.</li>
       <li><em>할 것</em>: 맨 아래 「③ 보고서 용도」가 「정해야 함」이면 고르고 <span class="btnish">저장</span>. 토지와 건물이 같은 지번이면 건물 용도로 고릅니다.</li>
     </ul></li>
   <li><strong>6 코멘트</strong> — 감정평가서를 요약한 담보물 개요. 보고서에 들어갈 글이니 고쳐서 쓰면 됩니다.</li>
@@ -373,7 +373,7 @@
 <details><summary>Claude 데스크톱 앱 채팅에 부동산업무도구 도구가 안 보입니다</summary><p><span class="btnish">연결 설치</span> 뒤 앱을 완전히 종료(트레이 아이콘에서 Quit)하고 다시 켭니다. 「CLI 연결」 행에 「Claude 앱 ✓」가 있어야 합니다.</p></details>
 <details><summary>프로그램이 멈춘 것 같다</summary><p>진행 띠의 걸린 시간이 계속 늘면 돌고 있는 겁니다. 멈추려면 <span class="btnish">중지</span>. 창을 닫고 다시 켜면 마지막 차주 폴더와 로그인은 그대로입니다.</p></details>
 
-<footer>부동산업무도구 0.2.31 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
+<footer>부동산업무도구 0.2.32 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
 </main>
 </div>
 </div>
