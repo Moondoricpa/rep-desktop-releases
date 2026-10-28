@@ -97,7 +97,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.34 · 2026-10-28</span>
+  <span class="ver">0.2.35 · 2026-10-28</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -121,10 +121,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.34.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.35.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.34</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.35</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -246,6 +246,7 @@
 </ol>
 
 <h3>⑩ 검증 AI · CLI 연결(선택)</h3>
+<p><strong>AI에게 시키기</strong>: 차주를 열면 화면 맨 위에 입력칸이 있습니다. 「낙찰사례 2년·시군구로 다시 모아」, 「위치도 넓게」, 「거래사례 AI 추천 다시」처럼 적고 <kbd>Enter</kbd> → 판단 AI 가 「실행할 일」을 한 줄로 보여 주면 <span class="btnish go">실행</span>. 버튼을 누른 것과 같게 돕니다. 보고서 기입은 여기서 하지 않습니다(기입 단계에서 직접).</p>
 <ul>
   <li><strong>검증 AI</strong>: 기본은 <strong>자동</strong> — 이 PC 에 있는 AI 중 읽기 AI 와 다른 것(Gemini 키 → Codex → Claude 순, 없으면 같은 AI 의 다른 모델)으로, 문서 추출이 끝날 때마다(버튼·자료 준비·CLI 모두) 뒤에서 다시 읽어 물건 주소·용도·금액이 같은지 맞춰 봅니다. 결과는 물건지 › PBC 문서 아래 「문서 검증」 상자. 특정 AI 를 쓰려면 「AI 설정 펼치기」의 검증 AI 에서 고르고, 끄려면 「끔」.</li>
   <li><strong>CLI 연결</strong>: Claude Code·Codex·Claude 데스크톱 앱을 쓰는 사람만 <span class="btnish">연결 설치</span>. 자세한 것은 9장.</li>
@@ -291,7 +292,7 @@
   <li><strong>4 낙찰사례 · 5 거래사례</strong>
     <ul>
       <li><em>볼 것</em>: 「본건 주소」와 「검색 용도」(고른 용도만 보입니다 — 바꾸려면 <span class="btnish">목록 펼치기</span>).</li>
-      <li><em>할 것</em>: 용도·기간·범위를 바꿨으면 <span class="btnish">다시 모으기</span>. 표에서 쓸 사례를 체크(최대 5건·3건). <span class="btnish">AI 추천</span>은 도구 유사도 점수 높은 순으로 정확히 3건을 고릅니다(용도가 전혀 다른 건만 건너뜀, 이유는 「AI 추천」 표시에 마우스). 거래사례도 「유사도」 칸에 종합 점수(위치·단가·면적·시점)가 있고 점수 높은 순으로 보입니다 — 여러 호실을 묶은 물건은 호실 평균 면적과 비교합니다. 표는 엑셀처럼 칸을 끌어 <kbd>Ctrl</kbd>+<kbd>C</kbd> 하거나 <span class="btnish">고른 사례 복사</span>·<span class="btnish">전체 복사</span>로 머리글째 복사해 엑셀에 붙여 넣으면 숫자는 숫자로 들어갑니다. 낙찰사례 엑셀 파일도 같은 15열(사건번호·주소·낙찰일자·감정평가액·낙찰가액·낙찰가율·건물면적·토지면적·입찰인수·비고·면적당 감정가/낙찰가·비고)입니다.</li>
+      <li><em>할 것</em>: 용도·기간·범위를 바꿨으면 <span class="btnish">다시 모으기</span>. 표에서 쓸 사례를 체크(최대 5건·3건). <span class="btnish">AI 추천</span>은 도구 유사도 점수 높은 순으로 정확히 3건을 고릅니다(용도가 전혀 다른 건만 건너뜀, 이유는 「AI 추천」 표시에 마우스). 거래사례도 「유사도」 칸에 종합 점수(위치·단가·면적·시점)가 있고 점수 높은 순으로 보입니다 — 여러 호실을 묶은 물건은 호실 평균 면적과 비교합니다. 표 머리글의 ⇅ 를 누르면 오름차순 → 내림차순 → 원래 순서, 표 위 「표 안에서 찾기」에 낱말을 넣으면 그 낱말이 모두 든 줄만 보입니다(「필터·정렬 풀기」로 원래대로). 표는 엑셀처럼 칸을 끌어 <kbd>Ctrl</kbd>+<kbd>C</kbd> 하거나 <span class="btnish">고른 사례 복사</span>·<span class="btnish">보이는 n건 복사</span>로 머리글째 복사해 엑셀에 붙여 넣으면 숫자는 숫자로 들어갑니다. 낙찰사례 엑셀 파일도 같은 15열(사건번호·주소·낙찰일자·감정평가액·낙찰가액·낙찰가율·건물면적·토지면적·입찰인수·비고·면적당 감정가/낙찰가·비고)입니다.</li>
       <li><em>할 것</em>: 맨 아래 「③ 보고서 용도」가 「정해야 함」이면 고르고 <span class="btnish">저장</span>. 토지와 건물이 같은 지번이면 건물 용도로 고릅니다.</li>
     </ul></li>
   <li><strong>6 코멘트</strong> — 감정평가서를 요약한 담보물 개요. 보고서에 들어갈 글이니 고쳐서 쓰면 됩니다.</li>
@@ -373,7 +374,7 @@
 <details><summary>Claude 데스크톱 앱 채팅에 부동산업무도구 도구가 안 보입니다</summary><p><span class="btnish">연결 설치</span> 뒤 앱을 완전히 종료(트레이 아이콘에서 Quit)하고 다시 켭니다. 「CLI 연결」 행에 「Claude 앱 ✓」가 있어야 합니다.</p></details>
 <details><summary>프로그램이 멈춘 것 같다</summary><p>진행 띠의 걸린 시간이 계속 늘면 돌고 있는 겁니다. 멈추려면 <span class="btnish">중지</span>. 창을 닫고 다시 켜면 마지막 차주 폴더와 로그인은 그대로입니다.</p></details>
 
-<footer>부동산업무도구 0.2.34 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
+<footer>부동산업무도구 0.2.35 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
 </main>
 </div>
 </div>
