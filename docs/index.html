@@ -97,7 +97,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.49 · 2026-10-29</span>
+  <span class="ver">0.2.50 · 2026-10-29</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -121,10 +121,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.49.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.50.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.49</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.50</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -260,6 +260,7 @@
 </div>
 <ol>
   <li>분기 폴더를 열면 Assign 엑셀을 읽어 <strong>내 차주 목록</strong>이 뜹니다. 추출 전·추출 중·기입 전·기입 완료 개수가 위에 보입니다.</li>
+  <li>끝난 차주는 폴더 이름 뒤에 <code>_완료</code> 를 붙여도 됩니다(엑셀 보고서를 닫고). 도구가 같은 차주로 알아보고 보고서·수집 엑셀·위치도 경로를 새 이름으로 따라갑니다.</li>
   <li><span class="btnish">공유 폴더에서 내 차주 자료 가져오기</span>를 누르면 공유 VDR·등기부에서 내 차주 서류를 찾아 <strong>미리보기</strong>를 보여 줍니다. 확인한 뒤 실제로 가져오면 차주마다 <code>03. WP\{평가자}\NN. 차주</code> 폴더가 생깁니다.</li>
   <li>공유 폴더에 없는 서류는 그 차주 폴더에 직접 넣습니다. 목록에서 「직접 넣음」으로 표시됩니다.</li>
   <li><span class="btnish">일괄 통계</span>는 목록의 모든 차주 낙찰통계를 인포케어에서 한 번에 받습니다.</li>
