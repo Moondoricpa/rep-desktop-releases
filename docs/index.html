@@ -97,7 +97,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.46 · 2026-10-29</span>
+  <span class="ver">0.2.47 · 2026-10-29</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -121,10 +121,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.46.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.47.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.46</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.47</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -313,7 +313,7 @@
 <p><strong>안 쓰는 행 숨기기</strong>: 기입할 때마다 3.평가보고서의 안 쓰는 행을 숨깁니다 — 채권현황의 빈 채권 행(과 같은 줄을 따라가는 (1) 매각금액 산정·(3) 예상배당금 줄), 쓰지 않는 물건 2·3 블록과 (2) 적용감정가 줄, 사례를 넣지 않은 낙찰·거래사례 줄. 사례가 한 건도 없으면 직접 채우도록 표를 그대로 둡니다. 건수가 늘어 다시 기입하면 다시 보입니다. 템플릿의 그룹(+/−)은 그대로입니다.</p>
 
 <h2 id="paste">6. 템플릿에 붙이기</h2>
-<p>기입으로 안 들어가는 덩어리는 화면의 「수동 붙이기」를 펼쳐 <span class="btnish">복사</span> 버튼으로 복사해 템플릿에 <kbd>Ctrl</kbd>+<kbd>V</kbd> 합니다. 버튼 이름이 붙여 넣을 칸입니다. 낙찰사례·거래사례는 보고서 표의 주소 칸이 C:D 병합이라 통째 붙여넣기가 엑셀에서 막혀 버튼을 뺐습니다 — 「보고서에 적용」이 그 칸을 씁니다(표가 필요하면 사례 표의 <span class="btnish">고른 사례 복사</span>).</p>
+<p>기입으로 안 들어가는 덩어리는 화면의 「수동 붙이기」를 펼쳐 <span class="btnish">복사</span> 버튼으로 복사해 템플릿에 <kbd>Ctrl</kbd>+<kbd>V</kbd> 합니다. 버튼 이름이 붙여 넣을 칸입니다. 낙찰사례·거래사례는 「보고서에 적용」이 표를 씁니다. 직접 붙이려면 사례 표의 <span class="btnish">고른 사례 복사</span>(낙찰사례는 사건번호 칸 B288 등, 거래사례는 주소 칸 C298 등에 <kbd>Ctrl</kbd>+<kbd>V</kbd>)나 <span class="btnish">주소 복사</span>(주소 칸에)를 씁니다 — 주소 칸의 C:D 병합과 칸 서식을 그대로 둔 채 들어갑니다.</p>
 <div class="scroll"><table>
   <thead><tr><th>화면</th><th>템플릿 시트</th><th>붙여 넣을 칸</th></tr></thead>
   <tbody>
