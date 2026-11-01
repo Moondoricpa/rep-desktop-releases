@@ -97,7 +97,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.57 · 2026-10-31</span>
+  <span class="ver">0.2.58 · 2026-11-01</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -121,10 +121,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.57.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.58.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.57</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.58</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -254,6 +254,12 @@
   <li><strong>CLI 연결</strong>: Claude Code·Codex·Claude 데스크톱 앱을 쓰는 사람만 <span class="btnish">연결 설치</span>. 자세한 것은 9장.</li>
 </ul>
 
+<h3>⑪ 분기 Assign(이번 분기 · 직전 분기)</h3>
+<ul>
+  <li><strong>이번 분기 Assign</strong>: 기본은 분기 폴더 위에서 이름에 Assign 이 든 엑셀 중 가장 최근 저장본. 업데이트된 파일을 쓰려면 <span class="btnish">파일 고르기</span>, 풀려면 <span class="btnish">자동으로</span>.</li>
+  <li><strong>직전 분기 Assign</strong>: 기본은 옆 분기 폴더(<code>03. 26.3Q</code>)의 Assign 엑셀. 중복 차주의 전분기 관리번호(3Q F041-1 등)를 여기서 찾습니다(대출계좌번호 → 차주명).</li>
+</ul>
+
 <h2 id="quarter">4. 분기 시작</h2>
 <div class="flow">
   <span class="btnish go">폴더 열기</span><span class="arrow">→</span><span>분기 폴더 <code>04. 26.4Q\01. MGAMCO\03. WP</code></span><span class="arrow">→</span><span>평가자(내 이름) 선택</span><span class="arrow">→</span><span class="btnish">공유 폴더에서 내 차주 자료 가져오기</span>
@@ -288,7 +294,11 @@
       <li><em>볼 것</em>: 토지 등기부 줄은 지번 옆에 지목이 보입니다. 「물건 묶기」 표의 <strong>결론</strong>. 등기부 = 감정평가서 = 수익권증서 주소를 AI 가 대조해 같은 물건이면 <span class="tag ok">맞음</span>, 다르면 <span class="tag bad">틀림</span>, 다른 점은 <strong>차이 사유</strong>에.</li>
       <li><em>할 것</em>: 「틀림」인데 평가 대상이 아니면 — 감정평가서·신탁계약서 줄은 <span class="btnish">제외</span>(그 주소만 빠지고 문서는 그대로, <span class="btnish">되살리기</span>로 되돌림), 등기부 줄은 <span class="btnish">문서 빼기</span>. 물건이 여럿이면 지번마다 물건 번호(1~3)를 고르고 <span class="btnish">저장</span>.</li>
       <li><em>할 것</em>: 「문서 검증」 상자에 다른 칸이 있으면 칸마다 <span class="btnish">검증 값으로</span> 또는 <span class="btnish">지금 값 유지</span>. 노란 줄(물건 지번)을 먼저 봅니다.</li>
-      <li>「공시지가·KB시세」「평가물건지 표」「위치도」 탭은 6장 참고.</li>
+      <li><em>주소</em>: 모든 표의 한 줄은 독립된 주소 하나, 등기부 형식(<code>경기도 양주시 백석읍 방성리 171-4 에이동 제3층 제301호</code>)입니다. 수익권증서도 호실마다 한 줄. 같은 호수라도 동이 다르면 다른 물건으로 봅니다. 물건 묶기 표에는 건물·토지면적(집합건물은 대지권 비율 적용)이 보입니다.</li>
+      <li><em>할 것</em>: 문서를 잘못 읽었으면 문서 종류 타일을 펼쳐 문서 이름 옆 <span class="btnish">다시 읽기</span>(그 문서만, 1~3분). 이름을 누르면 원본 파일이 열립니다.</li>
+      <li><em>전분기 탁감 후보</em>: 감정평가서 타일을 펼치면 주소가 비슷한 3분기 탁감이 소재지·면적·감정가와 함께 보입니다(탁감엔 차주명이 없어 사람이 판단). 맞으면 <span class="btnish">이것 쓰기</span> — 그 탁감이 감정평가서로 쓰입니다. <span class="btnish">취소</span>로 되돌림.</li>
+      <li>「공시지가·KB시세」「평가물건지 표」「위치도」 탭은 6장 참고. 집합건물 행의 공시지가는 비우고 같은 지번 토지 행에만 둡니다.</li>
+      <li>자주 안 보는 상자(AI 명령칸 · 값 목록 · 문서 검증 · 인포케어 조건 · 사례 조건 · 기입 경고)는 ▸ 접혀 있습니다. 누르면 펼쳐지고 그 상태를 기억합니다. 낙찰·거래사례 표는 고른 건·AI 추천만 먼저 보이고 <span class="btnish">나머지 N건 보기</span>로 전부.</li>
     </ul></li>
   <li><strong>2 경매/공매</strong> — 본건 사건번호·법원·진행 상태. 사건이 없으면 비어 있습니다. 다시 받으려면 <span class="btnish">본건 사건 조회</span>.</li>
   <li><strong>3 낙찰통계</strong>
