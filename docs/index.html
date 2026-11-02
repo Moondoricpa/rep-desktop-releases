@@ -97,7 +97,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.63 · 2026-11-02</span>
+  <span class="ver">0.2.64 · 2026-11-02</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -121,10 +121,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.63.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.64.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.63</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.64</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -409,6 +409,11 @@
 <details><summary>프로그램이 멈춘 것 같다</summary><p>진행 띠의 걸린 시간이 계속 늘면 돌고 있는 겁니다. 멈추려면 <span class="btnish">중지</span>. 창을 닫고 다시 켜면 마지막 차주 폴더와 로그인은 그대로입니다.</p></details>
 
 <footer>부동산업무도구 0.2.56 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
+<h2 id="eulgu">등기부 말소(빨간 줄) 판정 (0.2.64)</h2>
+<ul>
+  <li>끝에 「주요 등기사항 요약」이 없는 등기부(열람본 등)도 을구 본문의 <b>「N번 … 등기말소」</b> 줄로 말소된 권리를 빼고, <b>「N번근저당권이전」</b> 이면 마지막 이전받은 사람을 권리자로 봅니다. AI 가 빨간 줄 권리를 유효로 읽어도 바로잡습니다.</li>
+  <li>이미 추출한 차주는 「추출」 또는 「자료 준비」를 한 번 누르면 AI 를 다시 부르지 않고 원문으로 다시 확인합니다.</li>
+</ul>
 <h2 id="photo">네이버지도 사진 → 보고서 4.사진 (0.2.63)</h2>
 <ul>
   <li>위 「네이버지도」 탭에서 <span class="btnish">사진 틀</span>을 누르면 지도·로드뷰 위에 엑셀 4.사진 칸 비율 빨간 사각형이 뜹니다. 위 띠를 끌어 옮기고, 오른쪽 아래 동그라미로 크기를 바꿉니다(비율 고정). 사각형 안에서도 지도 조작은 그대로입니다.</li>
