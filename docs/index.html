@@ -97,7 +97,7 @@
 <div class="wrap">
 <header>
   <h1>부동산업무도구 설명서</h1>
-  <span class="ver">0.2.76 · 2026-11-05</span>
+  <span class="ver">0.2.80 · 2026-11-09</span>
   <p>NPL 담보 평가보고서를 만드는 Windows 프로그램. 등기부·감정평가서를 읽고, 경매·실거래 사례를 모으고, 템플릿에 넣을 값을 계산합니다.</p>
 </header>
 
@@ -121,10 +121,10 @@
 
 <h2 id="install">1. 설치</h2>
 <ol>
-  <li>설치 파일 <code>rep-desktop-setup-0.2.76.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
+  <li>설치 파일 <code>rep-desktop-setup-0.2.80.exe</code>를 받습니다. 정본은 GitHub Releases, 사본은 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code>에 있습니다.</li>
   <li>실행하면 Windows SmartScreen 경고가 뜹니다(서명 없는 파일). <span class="btnish">추가 정보</span> → <span class="btnish">실행</span>.</li>
   <li>설치가 끝나면 「부동산업무도구」가 열립니다. 처음 켤 때 문서 AI 도구(Codex·Claude)를 자동으로 함께 설치합니다. 몇 분 걸릴 수 있습니다.</li>
-  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.76</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
+  <li>지금 버전은 왼쪽 맨 아래 <span class="btnish">v0.2.80</span> 줄에 보입니다. 새 판이 나오면 화면 오른쪽 위에 노란 띠 「새 버전 X 이 나왔습니다」와 <span class="btnish">내려받기</span>가 뜹니다(켠 뒤 8초, 그 뒤 30분마다, 창으로 돌아올 때도 확인). 누르면 받고, 다 받으면 <span class="btnish">설치 — 다시 시작</span>. 0단계 준비 표 맨 위 「프로그램 업데이트」에서도 됩니다.</li>
 </ol>
 <div class="note"><p>팀원 PC에는 WSL이나 파이썬을 따로 깔 필요가 없습니다. 필요한 것은 전부 설치 파일 안에 들어 있습니다.</p></div>
 
@@ -409,6 +409,16 @@
 <details><summary>프로그램이 멈춘 것 같다</summary><p>진행 띠의 걸린 시간이 계속 늘면 돌고 있는 겁니다. 멈추려면 <span class="btnish">중지</span>. 창을 닫고 다시 켜면 마지막 차주 폴더와 로그인은 그대로입니다.</p></details>
 
 <footer>부동산업무도구 0.2.56 · 설치 파일과 이 설명서는 OneDrive <code>00. AI\004. 업무도구\부동산업무도구\</code></footer>
+<h2 id="pdf">PDF 변환 · 화면 찾기 · 사례 표 · 등기부 최신 열람본 (0.2.80)</h2>
+<ul>
+  <li><b>PDF 변환</b>: 왼쪽 아래 <span class="btnish">화면 비우기</span>·<span class="btnish">저장 데이터 삭제</span> 바로 위의 <span class="btnish">PDF 변환</span>을 누릅니다. <span class="btnish">파일 고르기</span>(여러 개 가능)나 끌어다 놓기, <span class="btnish">이 차주 보고서 넣기</span>로 보고서 엑셀을 넣고 <span class="btnish">PDF 만들기</span>를 누르면 파일마다 그 옆에 Draft·발송 PDF가 생깁니다(같은 이름은 덮어씀). 차주를 열지 않아도 됩니다. 7단계 최종 점검의 「PDF 저장」 버튼은 없어졌습니다.</li>
+  <li>PDF는 <b>저장된 파일</b>로 만듭니다. 엑셀에서 고쳤으면 먼저 저장(Ctrl+S)하세요. 「다른 이름으로 저장」한 파일은 그 파일을 넣어야 합니다.</li>
+  <li><b>화면 찾기</b>: 도구줄 <span class="btnish">찾기</span> 또는 Ctrl+F. 지금 보이는 탭에서 글자를 찾습니다. Enter 다음 · Shift+Enter 이전 · Esc 닫기.</li>
+  <li><b>낙찰·거래사례 ④ 「보고서에 들어갈 사례」</b>에 ③ 후보 표와 같은 열(면적당 감정가·낙찰가, 거리 등)이 모두 나옵니다. <span class="btnish">고른 사례 복사</span>는 전처럼 보고서 표 열만 복사합니다.</li>
+  <li><b>낙찰사례 고르는 순서</b>: ① 낙찰가율이 통계 낙찰가율과 비슷한 것 ② 거리 ③ 단가. 도구 제안과 <span class="btnish">AI 추천</span> 모두 이 순서입니다. 이미 고른 사례는 그대로이니 새 기준으로 받으려면 <span class="btnish">AI 추천 다시</span>.</li>
+  <li><b>같은 호실·같은 토지 등기부가 여러 부</b>면 열람일시가 가장 늦은 것 하나만 씁니다. 평가물건지 표에 같은 물건이 여러 줄 들어가지 않고, 뺀 파일 수는 경고에 나옵니다.</li>
+  <li><b>물건 정리</b>: 대주 금고 근저당(차주가 채무자)의 공동담보목록·부기로 더해진 공동담보까지 대상에 들어갑니다. 폴더에 등기부가 없는 공동담보는 「등기부 없음」 줄로 보입니다. 예전에 연 차주는 다시 열 때 한 번 등기부를 다시 읽습니다(처음 한 번 느릴 수 있음).</li>
+</ul>
 <h2 id="review">리뷰요청 · PENDING · 도구줄 · 네이버지도 100% (0.2.76)</h2>
 <ul>
   <li><b>차주 목록</b>의 완료 오른쪽에 <b>리뷰요청</b>, <b>PENDING</b> 체크칸이 있습니다. 표시만 남기며 단계는 바꾸지 않습니다. 완료와 마찬가지로 이 PC의 차주 기록에 저장됩니다.</li>
